@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GenHire – AI Content Creator Marketplace</title>
+<style>
+:root{--bg:#f6f6fb;--card:#fff;--tx:#161625;--mu:#6b6b85;--bd:#e3e3ef;--ac:#6c4cf5;--ok:#12a36b;--wn:#d98a00;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0f1a;--card:#191927;--tx:#ececf8;--mu:#9a9ab5;--bd:#2c2c42;--ac:#8f78ff}}
+:root[data-theme="dark"]{--bg:#0f0f1a;--card:#191927;--tx:#ececf8;--mu:#9a9ab5;--bd:#2c2c42;--ac:#8f78ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--card);border-bottom:1px solid var(--bd);display:flex;gap:8px;align-items:center;padding:10px 16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:18px;margin-right:12px}.logo b{color:var(--ac)}
+nav button{background:none;border:0;color:var(--mu);padding:8px 12px;border-radius:8px;cursor:pointer;font:inherit;font-weight:600}
+nav button.on{background:var(--ac);color:#fff}
+main{max-width:1150px;margin:0 auto;padding:16px}
+h2{margin:4px 0 12px}h3{margin:0 0 6px}
+.layout{display:grid;grid-template-columns:260px 1fr;gap:16px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.chip{display:inline-block;border:1px solid var(--bd);border-radius:99px;padding:2px 10px;margin:2px 3px 2px 0;font-size:12px;cursor:pointer;background:none;color:var(--tx)}
+.chip.on{background:var(--ac);border-color:var(--ac);color:#fff}.chip.s{cursor:default}
+.v{color:var(--ok);font-size:12px;font-weight:600;margin-right:8px;white-space:nowrap}.v.no{color:var(--mu);font-weight:400}
+.mu{color:var(--mu);font-size:13px}
+input,select,textarea{width:100%;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+label{display:block;font-size:12px;font-weight:700;color:var(--mu);margin:10px 0 3px;text-transform:uppercase;letter-spacing:.04em}
+.btn{background:var(--ac);color:#fff;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font:inherit;font-weight:600}.btn.g{background:none;color:var(--ac);border:1px solid var(--ac)}.btn.sm{padding:4px 10px;font-size:13px}
+.th{border-radius:8px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:8px;color:#fff;font-size:12px;font-weight:600;min-height:90px}
+.th i{position:absolute;top:8px;right:10px;font-style:normal;opacity:.9}
+.av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;flex:none}
+.row{display:flex;gap:10px;align-items:center}.sp{justify-content:space-between}
+.ov{position:fixed;inset:0;background:#000a;z-index:20;overflow:auto;padding:16px}.ov .card{max-width:760px;margin:0 auto}
+.kan{display:grid;grid-template-columns:repeat(5,minmax(190px,1fr));gap:10px;overflow-x:auto}
+.kan>div{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:8px;min-height:120px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:600px){.two{grid-template-columns:1fr}}
+table{border-collapse:collapse;width:100%;font-size:13px;display:block;overflow-x:auto}td,th{border:1px solid var(--bd);padding:6px 8px;text-align:left;vertical-align:top}
+.bar{height:6px;background:var(--bd);border-radius:9px;overflow:hidden}.bar div{height:100%;background:var(--ok)}
+</style></head><body>
+<header><div class="logo">Gen<b>Hire</b></div>
+<nav id="nav"></nav></header>
+<main id="app"></main><div id="ov" class="ov" style="display:none" onclick="if(event.target===this)closeM()"></div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TYPES=['Video ad','Short film','Animation','Graphics / Image','Music video','Product visual'];
+const RATIOS=['16:9','9:16','1:1','4:5','21:9'];
+const STYLES=['Cinematic','Anime','3D / CGI','Minimal','Retro','Surreal','Photoreal','Playful'];
+const USES=['Organic social','Paid ads','Website','Broadcast / TV','Out-of-home','Internal / pitch'];
+const STAGES=['Invited','Proposal','In production','Review','Delivered'];
+const C=[];
+const uniq=k=>[...new Set(C.flatMap(c=>c[k]))].sort();
+let SPECS=[...new Set(C.map(c=>c.spec))];
+const S=JSON.parse((()=>{try{return localStorage.getItem('gh')}catch(e){return null}})()||'null')||{briefs:[{id:1,title:'Diwali sneaker teaser',brand:'StrideCo',type:'Video ad',style:['Cinematic'],ratios:['9:16'],dur:'15s',tools:[],uses:['Paid ads','Organic social'],terr:'India',term:'12 months',excl:'Category exclusive',own:'Brand owns outputs; creator shares prompts/workflow',budget:1500,due:'2026-11-05',rounds:2,desc:'Cinematic festive sneaker teaser for Reels.'}],eng:[]};
+const save=()=>{try{localStorage.setItem('gh',JSON.stringify(S))}catch(e){}};
+let F={q:'',spec:'',types:[],tools:[],skills:[],ver:false,lic:false,max:3000,sort:'rel'},tab='discover',draft=null;
+const TABS=[['discover','Discover creators'],['briefs','Briefs'],['new','+ New brief'],['eng','Engagements'],['model','Data model']];
+function nav(t){tab=t;window.scrollTo(0,0);if(t=='new'&&!draft)draft=blank();render()}
+const blank=()=>({id:Date.now(),title:'',brand:'',type:'Video ad',style:[],ratios:['16:9'],dur:'30s',tools:[],uses:[],terr:'Worldwide',term:'12 months',excl:'Non-exclusive',own:'Brand owns outputs',budget:1000,due:'',rounds:2,desc:''});
+const vc=c=>Object.values(c.v).filter(Boolean).length;
+const grad=h=>`linear-gradient(135deg,hsl(${h},70%,45%),hsl(${(h+60)%360},75%,30%))`;
+const tog=(a,v)=>{const i=a.indexOf(v);i<0?a.push(v):a.splice(i,1)};
+function chips(list,sel,fn){return list.map(x=>`<button class="chip ${sel.includes(x)?'on':''}" onclick="${fn}('${esc(x).replace(/'/g,"\\'")}')">${esc(x)}</button>`).join('')}
+function badges(c,full){const L=[['t','Tools verified','Tool usage confirmed via project files/metadata'],['w','Workflow reviewed','Process breakdown checked by platform'],['p','Past work confirmed','Client references or source files validated']];
+return L.map(([k,l,d])=>`<span class="v ${c.v[k]?'':'no'}" title="${d}">${c.v[k]?'✔':'○'} ${l}</span>`).join('')}
+function filtered(){const q=F.q.toLowerCase();return C.filter(c=>{
+const hay=[c.n,c.spec,c.bio,...c.tools,...c.skills,...c.types,...c.styles].join(' ').toLowerCase();
+return(!q||q.split(/\s+/).every(w=>hay.includes(w)))&&(!F.spec||c.spec==F.spec)&&F.types.every(t=>c.types.includes(t))&&F.tools.every(t=>c.tools.includes(t))&&F.skills.every(t=>c.skills.includes(t))&&(!F.ver||vc(c)==3)&&(!F.lic||c.lic)&&c.rate<=F.max}).sort((a,b)=>F.sort=='rate'?a.rate-b.rate:F.sort=='rt'?b.rt-a.rt:vc(b)-vc(a)||b.rt-a.rt)}
+function card(c,m){return`<div class="card"><div class="row"><div class="av" style="background:${grad(c.h)}">${c.n[0]}</div><div><h3>${esc(c.n)}</h3><div class="mu">${esc(c.spec)} · ${esc(c.loc)}</div></div></div>
+<div class="row" style="margin:8px 0">${c.work.slice(0,3).map(w=>`<div class="th" style="flex:1;background:${grad(c.h+c.work.indexOf(w)*25)};min-height:60px"><i>${w[1].includes('Video')||w[1].includes('film')||w[1].includes('Music')||w[1]=='Animation'?'▶':'▣'}</i></div>`).join('')}</div>
+<div>${c.tools.slice(0,4).map(t=>`<span class="chip s">${esc(t)}</span>`).join('')}</div><div style="margin:6px 0">${badges(c)}</div>
+<div class="row sp"><span class="mu">★ ${c.rt} · from $${c.rate}/project${c.lic?' · ⚖ license-ready':''}</span></div>
+${m!=null?`<div class="bar" style="margin:8px 0 4px"><div style="width:${m}%"></div></div><div class="mu">${m}% match</div>`:''}
+<div class="row" style="margin-top:8px"><button class="btn sm" onclick="openP('${c.id}')">View portfolio</button>${m!=null?`<button class="btn g sm" onclick="invite('${c.id}')">Invite</button>`:''}</div></div>`}
+function discover(){const R=filtered();
+const sel=(k,l,L)=>`<label>${l}</label>${chips(L,F[k],"tF('"+k+"',")}`.replace(/tF\('(\w+)',\('/g,"tF('$1','");
+return`<h2>Discover AI creators</h2><div class="layout"><aside class="card" style="align-self:start"><label style="margin-top:0">Search</label><input id="q" placeholder="e.g. anime Kling lip-sync" value="${esc(F.q)}" oninput="F.q=this.value;list()">
+<label>Specialization</label><select onchange="F.spec=this.value;list()"><option value="">All</option>${SPECS.map(s=>`<option ${F.spec==s?'selected':''}>${s}</option>`).join('')}</select>
+<label>Content type</label>${TYPES.map(x=>`<button class="chip ${F.types.includes(x)?'on':''}" onclick="tg('types','${x}')">${x}</button>`).join('')}
+<label>Tools / models</label>${uniq('tools').map(x=>`<button class="chip ${F.tools.includes(x)?'on':''}" onclick="tg('tools','${x}')">${x}</button>`).join('')}
+<label>Skills</label>${uniq('skills').map(x=>`<button class="chip ${F.skills.includes(x)?'on':''}" onclick="tg('skills','${x}')">${x}</button>`).join('')}
+<label>Max rate: $${F.max}</label><input type="range" min="300" max="3000" step="100" value="${F.max}" oninput="F.max=+this.value;list();this.previousElementSibling.textContent='Max rate: $'+F.max">
+<label><input type="checkbox" style="width:auto" ${F.ver?'checked':''} onchange="F.ver=this.checked;list()"> Fully verified only</label>
+<label><input type="checkbox" style="width:auto" ${F.lic?'checked':''} onchange="F.lic=this.checked;list()"> Commercial-license ready</label>
+<label>Sort</label><select onchange="F.sort=this.value;list()"><option value="rel">Most trusted</option><option value="rt" ${F.sort=='rt'?'selected':''}>Top rated</option><option value="rate" ${F.sort=='rate'?'selected':''}>Lowest rate</option></select>
+<button class="btn g sm" style="margin-top:12px" onclick="resetF()">Reset filters</button></aside><section id="res"></section></div>`}
+function list(){const R=filtered();$('#res').innerHTML=`<div class="mu" style="margin-bottom:8px">${R.length} creator${R.length==1?'':'s'} found</div>`+(R.length?`<div class="grid">${R.map(c=>card(c)).join('')}</div>`:empty())}
+function empty(){const hints=[];
+if(F.q)hints.push(['Clear search text',()=>F.q='']);
+const trial=(lab,fn)=>{const o={...F};fn();const n=filtered().length;F=o;if(n)hints.push([lab+` → ${n} result${n>1?'s':''}`,fn])};
+if(F.ver)trial('Include unverified creators',()=>F.ver=false);if(F.lic)trial('Drop license filter',()=>F.lic=false);if(F.max<3000)trial('Raise budget cap',()=>F.max=3000);
+if(F.tools.length)trial('Drop tool filters',()=>F.tools=[]);if(F.skills.length)trial('Drop skill filters',()=>F.skills=[]);if(F.types.length)trial('Drop content type',()=>F.types=[]);if(F.spec)trial('Any specialization',()=>F.spec='');
+window._h=hints.map(h=>h[1]);
+return`<div class="card" style="text-align:center;padding:30px"><h3>No creators match these filters</h3><p class="mu">Try relaxing one of these:</p>${hints.map((h,i)=>`<div><button class="chip" onclick="_h[${i}]();render()">${esc(h[0])}</button></div>`).join('')}<p><button class="btn" onclick="resetF()">Reset all filters</button> <button class="btn g" onclick="nav('new')">Post a brief instead</button></p></div>`}
+function tg(k,v){tog(F[k],v);render()}
+function resetF(){F={q:'',spec:'',types:[],tools:[],skills:[],ver:false,lic:false,max:3000,sort:'rel'};render()}
+function openP(id){const c=C.find(x=>x.id==id);$('#ov').style.display='block';$('#ov').innerHTML=`<div class="card"><div class="row sp"><div class="row"><div class="av" style="background:${grad(c.h)}">${c.n[0]}</div><div><h2 style="margin:0">${esc(c.n)}</h2><div class="mu">${esc(c.spec)} · ${esc(c.loc)} · ★ ${c.rt} · ${c.jobs} projects</div></div></div><button class="btn g sm" onclick="closeM()">Close</button></div>
+<p>${esc(c.bio)}</p><div>${badges(c)}</div>
+<div class="two"><div><label>Tools / models</label>${c.tools.map(t=>`<span class="chip s">${esc(t)}</span>`).join('')}<label>Skills</label>${c.skills.map(t=>`<span class="chip s">${esc(t)}</span>`).join('')}</div>
+<div><label>Content types</label>${c.types.join(', ')}<label>Styles</label>${c.styles.join(', ')}<label>Formats</label>${c.fm.join(', ')}<label>Commercial use</label>${c.lic?'✔ Commercial-safe tools; license transfer & usage terms supported':'Case-by-case; confirm tool licenses before commercial use'}<label>Rate</label>from $${c.rate}/project</div></div>
+<label>Workflow</label><ol style="margin:4px 0;padding-left:20px">${c.wf.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
+<label>AI portfolio</label><div class="grid">${c.work.map((w,i)=>`<div class="card" style="padding:8px"><div class="th" style="background:${grad(c.h+i*25)};aspect-ratio:${w[2].replace(':','/')};max-height:200px"><i>${w[1]=='Graphics / Image'||w[1]=='Product visual'?'▣':'▶'}</i>${esc(w[0])}</div><div class="mu" style="margin-top:6px"><b>${w[1]}</b> · ${w[2]}<br>🛠 ${esc(w[3])}<br><i>Prompt:</i> “${esc(w[4])}”</div></div>`).join('')}</div>
+<div class="row" style="margin-top:12px"><button class="btn" onclick="closeM();inviteAsk('${c.id}')">Invite to a brief</button></div></div>`}
+function closeM(){$('#ov').style.display='none'}
+function score(b,c){let s=0;if(c.types.includes(b.type))s+=30;if(b.ratios.length&&b.ratios.every(r=>c.fm.includes(r)))s+=15;else if(b.ratios.some(r=>c.fm.includes(r)))s+=7;
+if(b.style.length)s+=Math.round(15*b.style.filter(x=>c.styles.includes(x)).length/b.style.length);else s+=8;
+if(b.tools.length)s+=Math.round(10*b.tools.filter(x=>c.tools.includes(x)).length/b.tools.length);else s+=5;
+if(b.uses.length&&c.lic)s+=15;else if(!b.uses.length)s+=8;if(+b.budget>=c.rate)s+=10;s+=Math.round(vc(c)/3*5);return Math.min(100,s)}
+function briefs(){return`<h2>Briefs</h2>${S.briefs.length?S.briefs.map(b=>{const m=C.map(c=>[c,score(b,c)]).sort((x,y)=>y[1]-x[1]).slice(0,3);return`<div class="card" style="margin-bottom:14px"><div class="row sp"><h3>${esc(b.title||'Untitled')} <span class="mu">· ${esc(b.brand)}</span></h3><button class="btn g sm" onclick="delB('${b.id}')">Delete</button></div>${briefSummary(b)}<label>Top matches</label><div class="grid">${m.map(([c,s])=>card(c,s).replace(/invite\(('[^']+')\)/,`invite($1,'${b.id}')`)).join('')}</div></div>`}).join(''):'<div class="card">No briefs yet. <button class="btn" onclick="nav(\'new\')">Create one</button></div>'}`}
+function briefSummary(b){return`<table><tr><td>Content type</td><td>${b.type}</td><td>Format</td><td>${b.ratios.join(', ')} · ${esc(b.dur)}</td></tr><tr><td>Style</td><td>${b.style.join(', ')||'—'}</td><td>Preferred tools</td><td>${b.tools.join(', ')||'Open'}</td></tr><tr><td>Commercial use</td><td>${b.uses.join(', ')||'—'} · ${esc(b.terr)} · ${esc(b.term)}</td><td>Exclusivity / ownership</td><td>${esc(b.excl)} · ${esc(b.own)}</td></tr><tr><td>Budget / due</td><td>$${b.budget} · ${esc(b.due||'TBD')}</td><td>Revision rounds</td><td>${b.rounds}</td></tr><tr><td colspan="4">${esc(b.desc)}</td></tr></table>`}
+function delB(id){S.briefs=S.briefs.filter(b=>b.id!=id);save();render()}
+function newBrief(){const d=draft;const ms=(L,k)=>L.map(x=>`<button class="chip ${d[k].includes(x)?'on':''}" onclick="dt('${k}','${x}')">${x}</button>`).join('');
+const f=(k,l,t='text')=>`<label>${l}</label><input type="${t}" value="${esc(d[k])}" oninput="draft.${k}=this.value">`;
+return`<h2>Create a brief</h2><div class="card" style="margin-bottom:14px;border-color:var(--ac)"><b>✨ AI brief builder</b><div class="mu">Paste a rough idea; we'll structure it. Edit anything after.</div><textarea id="rough" rows="3" placeholder="e.g. need a 15s cinematic instagram reel for our new sneakers, paid ads in India, budget around 1500">${esc(d._rough||'')}</textarea><button class="btn" style="margin-top:8px" onclick="build()">Build structured brief</button></div>
+<div class="card"><div class="two">${f('title','Campaign title')}${f('brand','Brand / agency')}</div>
+<label>Campaign requirements</label><textarea rows="3" oninput="draft.desc=this.value">${esc(d.desc)}</textarea>
+<div class="two"><div><label>Content type</label><select onchange="draft.type=this.value">${TYPES.map(x=>`<option ${d.type==x?'selected':''}>${x}</option>`).join('')}</select></div>${f('dur','Duration / quantity')}</div>
+<label>Aspect ratio / format</label>${ms(RATIOS,'ratios')}<label>Style</label>${ms(STYLES,'style')}<label>Preferred tools (optional)</label>${ms(uniq('tools'),'tools')}
+<label>Commercial-use requirements</label>${ms(USES,'uses')}
+<div class="two">${f('terr','Territory')}<div><label>License term</label><select onchange="draft.term=this.value">${['3 months','12 months','24 months','Perpetual'].map(x=>`<option ${d.term==x?'selected':''}>${x}</option>`).join('')}</select></div>
+<div><label>Exclusivity</label><select onchange="draft.excl=this.value">${['Non-exclusive','Category exclusive','Fully exclusive'].map(x=>`<option ${d.excl==x?'selected':''}>${x}</option>`).join('')}</select></div>
+<div><label>Ownership of outputs & prompts</label><select onchange="draft.own=this.value">${['Brand owns outputs','Brand owns outputs; creator shares prompts/workflow','Creator retains, brand licensed'].map(x=>`<option ${d.own==x?'selected':''}>${x}</option>`).join('')}</select></div>
+${f('budget','Budget (USD)','number')}${f('due','Deadline','date')}</div><label>Revision / regeneration rounds</label><input type="number" min="0" value="${d.rounds}" oninput="draft.rounds=+this.value">
+<p class="row"><button class="btn" onclick="pub()">Publish brief & see matches</button></p></div>`}
+function dt(k,v){tog(draft[k],v);render()}
+function build(){const t=$('#rough').value,l=t.toLowerCase(),d=draft;d._rough=t;if(!t.trim())return;
+const has=r=>r.test(l);
+d.type=has(/music|song|mv/)?'Music video':has(/animat|explainer|mascot|cartoon/)?'Animation':has(/short film|story|film/)?'Short film':has(/poster|banner|image|graphic|post\b|illustrat/)?'Graphics / Image':has(/packshot|product shot|product visual/)?'Product visual':'Video ad';
+d.ratios=has(/reel|tiktok|story|stories|shorts|vertical/)?['9:16']:has(/youtube|tv|cinema|film|website|hero/)?['16:9']:has(/feed|carousel|square/)?['1:1','4:5']:['16:9'];
+const sm={cinematic:'Cinematic',anime:'Anime','3d':'3D / CGI',cgi:'3D / CGI',minimal:'Minimal',retro:'Retro',vintage:'Retro',surreal:'Surreal',photoreal:'Photoreal',realistic:'Photoreal',playful:'Playful',fun:'Playful'};
+d.style=[...new Set(Object.keys(sm).filter(k=>l.includes(k)).map(k=>sm[k]))];if(!d.style.length)d.style=['Cinematic'];
+d.uses=[];if(has(/paid|ad\b|ads\b|campaign|performance/))d.uses.push('Paid ads');if(has(/insta|reel|social|tiktok|youtube|post/))d.uses.push('Organic social');if(has(/website|landing|web/))d.uses.push('Website');if(has(/tv|broadcast/))d.uses.push('Broadcast / TV');if(has(/billboard|ooh|outdoor/))d.uses.push('Out-of-home');if(!d.uses.length)d.uses=['Organic social'];
+const du=l.match(/(\d+)\s*(s|sec|seconds|min)/);d.dur=du?du[1]+(du[2][0]=='m'?'min':'s'):d.type=='Graphics / Image'?'5 images':'30s';
+const bu=l.match(/(?:\$|usd|budget[^\d]{0,12})\s?(\d[\d,]*)/);if(bu)d.budget=+bu[1].replace(/,/g,'');
+const te=l.match(/\b(india|usa|uk|europe|global|worldwide)\b/);d.terr=te?te[1][0].toUpperCase()+te[1].slice(1):d.terr;
+d.tools=uniq('tools').filter(x=>l.includes(x.split(' ')[0].toLowerCase()));
+d.excl=has(/exclusive/)?'Category exclusive':'Non-exclusive';d.term=d.uses.includes('Paid ads')?'12 months':'3 months';
+d.desc=`Create a ${d.style.join('/').toLowerCase()} ${d.type.toLowerCase()} (${d.dur}, ${d.ratios.join('/')}) based on: "${t.trim()}". Deliver ${d.rounds} regeneration/revision rounds, with prompt & tool log. Intended use: ${d.uses.join(', ')} in ${d.terr} for ${d.term}.`;
+if(!d.title)d.title=t.split(/\s+/).slice(0,5).join(' ');render()}
+function pub(){const d=draft;if(!d.title||!d.brand||!d.ratios.length||!d.uses.length){alert('Please add title, brand, at least one aspect ratio and one commercial-use option.');return}delete d._rough;S.briefs.unshift(d);draft=null;save();nav('briefs')}
+function inviteAsk(id){if(!S.briefs.length){nav('new');return}invite(id,S.briefs[0].id)}
+function invite(cid,bid){bid=bid||S.briefs[0]?.id;if(!bid){nav('new');return}if(S.eng.some(e=>e.c==cid&&e.b==bid)){alert('Already invited.');return}S.eng.push({id:Date.now(),c:cid,b:bid,st:0,rd:0,log:['Invited']});save();nav('eng')}
+function mv(id,d){const e=S.eng.find(x=>x.id==id);if(d=='rev'){e.st=2;e.rd++;e.log.push('Revision #'+e.rd+' requested')}else{e.st=Math.min(4,e.st+1);e.log.push(STAGES[e.st])}save();render()}
+function eng(){return`<h2>Engagements</h2>${S.eng.length?`<div class="kan">${STAGES.map((s,i)=>`<div><b>${s}</b>${S.eng.filter(e=>e.st==i).map(e=>{const c=C.find(x=>x.id==e.c),b=S.briefs.find(x=>x.id==e.b)||{title:'(deleted brief)',rounds:0};return`<div class="card" style="margin-top:8px;padding:8px"><b>${esc(c.n)}</b><div class="mu">${esc(b.title)}<br>Rounds: ${e.rd}/${b.rounds}</div>${i==4?`<div class="mu">✔ Final files, prompt log & license terms handed over</div>`:`<div class="row" style="margin-top:6px"><button class="btn sm" onclick="mv('${e.id}')">${['Accept & request proposal','Approve & start','Send for review','Approve delivery'][i]}</button>${i==3&&e.rd<b.rounds?`<button class="btn g sm" onclick="mv('${e.id}','rev')">Revise</button>`:''}</div>`}</div>`}).join('')}</div>`).join('')}</div>`:'<div class="card">No engagements yet. Invite a creator from <a href="#" onclick="nav(\'discover\');return false">Discover</a> or a brief\'s matches.</div>'}`}
+function model(){return`<h2>Data model</h2><div class="card"><p class="mu">Core entities (JSON-shaped, ready for a SQL/Mongo mapping).</p><table><tr><th>Entity</th><th>Key fields</th></tr>
+<tr><td>CreatorProfile</td><td>id, name, specialization, location, bio, rateFrom, rating, projectsCompleted, <b>tools[]</b>, <b>skills[]</b>, contentTypes[], styles[], supportedFormats[] (aspect ratios), <b>commercialLicenseReady</b>, <b>workflow[]</b> (ordered steps), <b>verification</b>{toolsVerified, workflowReviewed, pastWorkConfirmed}</td></tr>
+<tr><td>PortfolioItem</td><td>creatorId, title, contentType, aspectRatio, toolsUsed[], promptSummary, assetUrl, clientRef?</td></tr>
+<tr><td>Brief</td><td>id, brandId, title, description, <b>contentType</b>, <b>style[]</b>, <b>aspectRatios[]</b>, duration, preferredTools[], budget, deadline, revisionRounds, <b>commercialUse</b>{channels[], territory, term, exclusivity, outputOwnership}</td></tr>
+<tr><td>Engagement</td><td>id, briefId, creatorId, stage (Invited → Proposal → In production → Review → Delivered), revisionCount, activityLog[]</td></tr>
+<tr><td>Match score</td><td>content type 30 + format 15 + style 15 + tools 10 + license fit 15 + budget 10 + verification 5</td></tr></table></div>`}
+function render(){$('#nav').innerHTML=TABS.map(([k,l])=>`<button class="${tab==k?'on':''}" onclick="nav('${k}')">${l}</button>`).join('');
+$('#app').innerHTML={discover,briefs,new:newBrief,eng,model}[tab]();if(tab=='discover')list()}
+</script>
+<script src="api.js"></script></body></html>

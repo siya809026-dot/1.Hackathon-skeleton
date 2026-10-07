@@ -1,0 +1,604 @@
+[
+  {
+    "name": "Aarav Mehta",
+    "specialization": "AI Filmmaker",
+    "location": "Mumbai",
+    "bio": "Ex-ad-film editor turning scripts into cinematic AI shorts for D2C brands.",
+    "rateFrom": 1800,
+    "rating": 4.9,
+    "projectsCompleted": 23,
+    "tools": [
+      "Runway Gen-4",
+      "Veo 3",
+      "Midjourney",
+      "ElevenLabs",
+      "DaVinci Resolve"
+    ],
+    "skills": [
+      "Storyboarding",
+      "Prompt engineering",
+      "Color grading",
+      "Voice cloning"
+    ],
+    "contentTypes": [
+      "Short film",
+      "Video ad"
+    ],
+    "styles": [
+      "Cinematic",
+      "Photoreal"
+    ],
+    "supportedFormats": [
+      "16:9",
+      "21:9"
+    ],
+    "commercialLicenseReady": true,
+    "workflow": [
+      "Script & shot list",
+      "Midjourney keyframes",
+      "Runway/Veo clips with seed locking",
+      "ElevenLabs VO",
+      "Resolve grade & upscale"
+    ],
+    "verification": {
+      "toolsVerified": true,
+      "workflowReviewed": true,
+      "pastWorkConfirmed": true
+    },
+    "portfolio": [
+      {
+        "title": "Monsoon Chai – 30s hero",
+        "contentType": "Video ad",
+        "aspectRatio": "16:9",
+        "toolsUsed": [
+          "Runway Gen-4",
+          "Resolve"
+        ],
+        "promptSummary": "cinematic rainy Mumbai window, steam rising from chai cup, 35mm, shallow DOF",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "The Last Lighthouse",
+        "contentType": "Short film",
+        "aspectRatio": "21:9",
+        "toolsUsed": [
+          "Veo 3",
+          "Midjourney"
+        ],
+        "promptSummary": "weathered keeper climbing spiral stairs, volumetric light",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Sneaker Drop teaser",
+        "contentType": "Video ad",
+        "aspectRatio": "9:16",
+        "toolsUsed": [
+          "Runway Gen-4"
+        ],
+        "promptSummary": "macro sneaker rotating on wet asphalt, neon reflections",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Zoya Khan",
+    "specialization": "AI Animator",
+    "location": "Delhi",
+    "bio": "Trains brand-specific LoRAs so mascots stay on-model across every frame.",
+    "rateFrom": 1200,
+    "rating": 4.8,
+    "projectsCompleted": 31,
+    "tools": [
+      "Kling",
+      "Pika",
+      "Stable Diffusion",
+      "ComfyUI",
+      "After Effects"
+    ],
+    "skills": [
+      "Character consistency",
+      "LoRA training",
+      "Motion design",
+      "Lip-sync"
+    ],
+    "contentTypes": [
+      "Animation",
+      "Video ad"
+    ],
+    "styles": [
+      "Anime",
+      "Playful",
+      "3D / CGI"
+    ],
+    "supportedFormats": [
+      "9:16",
+      "1:1",
+      "16:9"
+    ],
+    "commercialLicenseReady": true,
+    "workflow": [
+      "Mascot LoRA training in ComfyUI",
+      "Pose sheets",
+      "Kling img2vid passes",
+      "After Effects cleanup",
+      "Lip-sync pass"
+    ],
+    "verification": {
+      "toolsVerified": true,
+      "workflowReviewed": true,
+      "pastWorkConfirmed": false
+    },
+    "portfolio": [
+      {
+        "title": "Mascot \"Bolt\" explainer",
+        "contentType": "Animation",
+        "aspectRatio": "16:9",
+        "toolsUsed": [
+          "ComfyUI",
+          "Kling"
+        ],
+        "promptSummary": "consistent orange fox mascot explaining UPI, flat 2D anime shading",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Festive sale loop",
+        "contentType": "Animation",
+        "aspectRatio": "1:1",
+        "toolsUsed": [
+          "Pika",
+          "AE"
+        ],
+        "promptSummary": "looping diya lights, paper-cut style",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Anime-style app promo",
+        "contentType": "Video ad",
+        "aspectRatio": "9:16",
+        "toolsUsed": [
+          "Kling"
+        ],
+        "promptSummary": "anime hero running through city, speed lines",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Liam Carter",
+    "specialization": "Generative Visual Artist",
+    "location": "London",
+    "bio": "Campaign stills and packshots with full commercial-safe model usage.",
+    "rateFrom": 900,
+    "rating": 4.7,
+    "projectsCompleted": 44,
+    "tools": [
+      "Midjourney",
+      "Flux",
+      "Photoshop Firefly",
+      "Magnific"
+    ],
+    "skills": [
+      "Art direction",
+      "Product compositing",
+      "Upscaling",
+      "Prompt engineering"
+    ],
+    "contentTypes": [
+      "Graphics / Image",
+      "Product visual"
+    ],
+    "styles": [
+      "Photoreal",
+      "Minimal",
+      "Surreal"
+    ],
+    "supportedFormats": [
+      "1:1",
+      "4:5",
+      "16:9"
+    ],
+    "commercialLicenseReady": true,
+    "workflow": [
+      "Moodboard",
+      "Flux/MJ generations",
+      "Firefly generative fill",
+      "Magnific upscale",
+      "Delivery in layered PSD"
+    ],
+    "verification": {
+      "toolsVerified": true,
+      "workflowReviewed": false,
+      "pastWorkConfirmed": true
+    },
+    "portfolio": [
+      {
+        "title": "Perfume surreal campaign",
+        "contentType": "Graphics / Image",
+        "aspectRatio": "4:5",
+        "toolsUsed": [
+          "Midjourney",
+          "Magnific"
+        ],
+        "promptSummary": "glass perfume bottle floating over desert dunes at dusk",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Minimal skincare set",
+        "contentType": "Product visual",
+        "aspectRatio": "1:1",
+        "toolsUsed": [
+          "Flux",
+          "Photoshop"
+        ],
+        "promptSummary": "pastel plinth, soft shadows, serum bottles",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Editorial poster series",
+        "contentType": "Graphics / Image",
+        "aspectRatio": "4:5",
+        "toolsUsed": [
+          "Midjourney"
+        ],
+        "promptSummary": "surreal collage, retro-futurist",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Sofia Alvarez",
+    "specialization": "AI Music Video Director",
+    "location": "Madrid",
+    "bio": "Audio-reactive music videos mixing generative footage and TouchDesigner.",
+    "rateFrom": 2200,
+    "rating": 4.9,
+    "projectsCompleted": 12,
+    "tools": [
+      "Runway Gen-4",
+      "Suno",
+      "Luma Dream Machine",
+      "TouchDesigner"
+    ],
+    "skills": [
+      "Audio-reactive visuals",
+      "Storyboarding",
+      "Editing",
+      "Beat syncing"
+    ],
+    "contentTypes": [
+      "Music video",
+      "Short film"
+    ],
+    "styles": [
+      "Surreal",
+      "Retro",
+      "Cinematic"
+    ],
+    "supportedFormats": [
+      "16:9",
+      "9:16"
+    ],
+    "commercialLicenseReady": false,
+    "workflow": [
+      "Track analysis",
+      "Scene mapping to beats",
+      "Luma/Runway generation",
+      "TouchDesigner reactive layer",
+      "Final edit"
+    ],
+    "verification": {
+      "toolsVerified": false,
+      "workflowReviewed": true,
+      "pastWorkConfirmed": true
+    },
+    "portfolio": [
+      {
+        "title": "Neon Dreams – official MV",
+        "contentType": "Music video",
+        "aspectRatio": "16:9",
+        "toolsUsed": [
+          "Runway",
+          "TouchDesigner"
+        ],
+        "promptSummary": "synthwave city pulsing with the kick drum",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Lo-fi loop",
+        "contentType": "Music video",
+        "aspectRatio": "9:16",
+        "toolsUsed": [
+          "Luma"
+        ],
+        "promptSummary": "rainy bedroom study loop, VHS grain",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Kenji Watanabe",
+    "specialization": "AI Animator",
+    "location": "Tokyo",
+    "bio": "Hybrid Blender + diffusion pipeline for studio-grade anime shots.",
+    "rateFrom": 1500,
+    "rating": 4.6,
+    "projectsCompleted": 18,
+    "tools": [
+      "Kling",
+      "Stable Diffusion",
+      "ComfyUI",
+      "Blender"
+    ],
+    "skills": [
+      "Anime production",
+      "ControlNet",
+      "3D to AI pipeline",
+      "Character consistency"
+    ],
+    "contentTypes": [
+      "Animation",
+      "Short film"
+    ],
+    "styles": [
+      "Anime",
+      "3D / CGI"
+    ],
+    "supportedFormats": [
+      "16:9",
+      "9:16"
+    ],
+    "commercialLicenseReady": true,
+    "workflow": [
+      "Blender blocking",
+      "ControlNet depth/pose",
+      "SD img passes",
+      "Kling interpolation",
+      "Compositing"
+    ],
+    "verification": {
+      "toolsVerified": true,
+      "workflowReviewed": true,
+      "pastWorkConfirmed": true
+    },
+    "portfolio": [
+      {
+        "title": "Ramen brand anime ad",
+        "contentType": "Video ad",
+        "aspectRatio": "16:9",
+        "toolsUsed": [
+          "Blender",
+          "ComfyUI"
+        ],
+        "promptSummary": "steaming ramen bowl, anime lighting, camera orbit",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Cyber-samurai short",
+        "contentType": "Short film",
+        "aspectRatio": "16:9",
+        "toolsUsed": [
+          "Kling",
+          "SD"
+        ],
+        "promptSummary": "samurai on neon rooftop at rain",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Priya Nair",
+    "specialization": "Generative Content Creator",
+    "location": "Bengaluru",
+    "bio": "Fast-turnaround social content packs for startups. 48h delivery.",
+    "rateFrom": 600,
+    "rating": 4.5,
+    "projectsCompleted": 57,
+    "tools": [
+      "Canva AI",
+      "Pika",
+      "Midjourney",
+      "CapCut",
+      "ElevenLabs"
+    ],
+    "skills": [
+      "Social-first content",
+      "Rapid iteration",
+      "Copywriting",
+      "Voice cloning"
+    ],
+    "contentTypes": [
+      "Video ad",
+      "Graphics / Image"
+    ],
+    "styles": [
+      "Playful",
+      "Minimal"
+    ],
+    "supportedFormats": [
+      "9:16",
+      "1:1",
+      "4:5"
+    ],
+    "commercialLicenseReady": true,
+    "workflow": [
+      "Brief to hook ideas",
+      "Batch generate",
+      "CapCut assembly",
+      "Caption & VO"
+    ],
+    "verification": {
+      "toolsVerified": false,
+      "workflowReviewed": false,
+      "pastWorkConfirmed": true
+    },
+    "portfolio": [
+      {
+        "title": "Fintech reel pack x10",
+        "contentType": "Video ad",
+        "aspectRatio": "9:16",
+        "toolsUsed": [
+          "Pika",
+          "CapCut"
+        ],
+        "promptSummary": "playful 3D coins bouncing, bold captions",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Cafe festive posts",
+        "contentType": "Graphics / Image",
+        "aspectRatio": "1:1",
+        "toolsUsed": [
+          "Midjourney",
+          "Canva"
+        ],
+        "promptSummary": "warm illustrated latte art",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Mateo Rossi",
+    "specialization": "AI Filmmaker",
+    "location": "Milan",
+    "bio": "Luxury fashion & auto commercials with VFX-grade compositing.",
+    "rateFrom": 2600,
+    "rating": 4.8,
+    "projectsCompleted": 9,
+    "tools": [
+      "Veo 3",
+      "Runway Gen-4",
+      "Magnific",
+      "Nuke"
+    ],
+    "skills": [
+      "Luxury product film",
+      "VFX compositing",
+      "Color grading",
+      "Prompt engineering"
+    ],
+    "contentTypes": [
+      "Video ad",
+      "Product visual",
+      "Short film"
+    ],
+    "styles": [
+      "Cinematic",
+      "Photoreal",
+      "Minimal"
+    ],
+    "supportedFormats": [
+      "16:9",
+      "21:9",
+      "4:5"
+    ],
+    "commercialLicenseReady": true,
+    "workflow": [
+      "Treatment",
+      "Veo hero shots",
+      "Nuke comp",
+      "Grade",
+      "Broadcast delivery specs"
+    ],
+    "verification": {
+      "toolsVerified": true,
+      "workflowReviewed": true,
+      "pastWorkConfirmed": true
+    },
+    "portfolio": [
+      {
+        "title": "Leather handbag launch",
+        "contentType": "Video ad",
+        "aspectRatio": "16:9",
+        "toolsUsed": [
+          "Veo 3",
+          "Nuke"
+        ],
+        "promptSummary": "slow-motion leather texture, golden light, 85mm",
+        "assetUrl": "",
+        "clientRef": ""
+      },
+      {
+        "title": "Electric SUV teaser",
+        "contentType": "Video ad",
+        "aspectRatio": "21:9",
+        "toolsUsed": [
+          "Runway",
+          "Nuke"
+        ],
+        "promptSummary": "SUV carving through alpine fog at dawn",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  },
+  {
+    "name": "Ananya Rao",
+    "specialization": "Generative Visual Artist",
+    "location": "Hyderabad",
+    "bio": "New to the platform. Retro illustration and poster sets.",
+    "rateFrom": 450,
+    "rating": 4.4,
+    "projectsCompleted": 15,
+    "tools": [
+      "Midjourney",
+      "Stable Diffusion",
+      "Photoshop Firefly"
+    ],
+    "skills": [
+      "Illustration",
+      "Prompt engineering",
+      "Poster design"
+    ],
+    "contentTypes": [
+      "Graphics / Image"
+    ],
+    "styles": [
+      "Retro",
+      "Playful",
+      "Surreal"
+    ],
+    "supportedFormats": [
+      "1:1",
+      "4:5"
+    ],
+    "commercialLicenseReady": false,
+    "workflow": [
+      "Reference gathering",
+      "SD/MJ batch",
+      "Manual retouch"
+    ],
+    "verification": {
+      "toolsVerified": false,
+      "workflowReviewed": false,
+      "pastWorkConfirmed": false
+    },
+    "portfolio": [
+      {
+        "title": "Retro travel posters",
+        "contentType": "Graphics / Image",
+        "aspectRatio": "4:5",
+        "toolsUsed": [
+          "Midjourney"
+        ],
+        "promptSummary": "1960s travel poster, Jaipur palace, risograph",
+        "assetUrl": "",
+        "clientRef": ""
+      }
+    ]
+  }
+]
